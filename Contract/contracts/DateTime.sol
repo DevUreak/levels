@@ -56,14 +56,14 @@ contract DateTime {
                 uint buf;
                 uint32 i;
 
-                // Year
+                // 년
                 dt.year = getYear(timestamp);
                 buf = leapYearsBefore(dt.year) - leapYearsBefore(ORIGIN_YEAR);
 
                 secondsAccountedFor += LEAP_YEAR_IN_SECONDS * buf;
                 secondsAccountedFor += YEAR_IN_SECONDS * (dt.year - ORIGIN_YEAR - buf);
 
-                // Month
+                // 월
                 uint secondsInMonth;
                 for (i = 1; i <= 12; i++) {
                         secondsInMonth = DAY_IN_SECONDS * getDaysInMonth(i, dt.year);
@@ -74,7 +74,7 @@ contract DateTime {
                         secondsAccountedFor += secondsInMonth;
                 }
 
-                // Day
+                // 날짜
                 for (i = 1; i <= getDaysInMonth(dt.month, dt.year); i++) {
                         if (DAY_IN_SECONDS + secondsAccountedFor > timestamp) {
                                 dt.day = i;
@@ -83,13 +83,13 @@ contract DateTime {
                         secondsAccountedFor += DAY_IN_SECONDS;
                 }
 
-                // Hour
+                // 시간 
                 dt.hour = getHour(timestamp);
 
-                // Minute
+                // 분 
                 dt.minute = getMinute(timestamp);
 
-                // Second
+                // 초
                 dt.second = getSecond(timestamp);
         }
 
@@ -98,7 +98,7 @@ contract DateTime {
                 uint32 year;
                 uint numLeapYears;
 
-                // Year
+                // 년
                 year = uint32(ORIGIN_YEAR + timestamp / YEAR_IN_SECONDS);
                 numLeapYears = leapYearsBefore(year) - leapYearsBefore(ORIGIN_YEAR);
 
