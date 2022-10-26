@@ -33,7 +33,7 @@ truffle-config.json port, ip, network_id 확인 및 수정
 ## 기능 설명 
 - Router를 통해서만 필수 LevvelsNFT 구매,수익 함수를 수행  
 - Router 
-    * CreateLevelsNFT
+    * CreateLevvelsNFT
       + Levvels 브랜드의 NFT를 생성
       + 생성될때 이벤트를 통해 API key와 컨트랙트 주소를 반환
 
