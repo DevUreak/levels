@@ -1,5 +1,5 @@
 const cont_router = artifacts.require('../contracts/Router');
-const cont_NFTFactory = artifacts.require('../contracts/LevelsNFTFactory');
+const cont_NFTFactory = artifacts.require('../contracts/LevvelsNFTFactory');
 const Web3 = require('web3');
 
 let _router;
@@ -18,8 +18,8 @@ contract("Router_Test",(accounts) =>{
     describe("[#1 No market time limit. Miting Pirce : "+mintPrice+" ETH]", () =>{
         let contaddr; 
         it("NFT initialization",async ()=>{
-            const result = await _router.CreateLevelsNFT(
-                "LevelsNFT_1",
+            const result = await _router.CreateLevvelsNFT(
+                "LevvelsNFT_1",
                 "LFT1",
                 tokenURI,
                 maxsupply,
@@ -78,8 +78,8 @@ contract("Router_Test",(accounts) =>{
 
     describe("[#2 Market opening and closing times are included. (ex.2022.11.01 ~ 2022.11.03) ]", () =>{
         it("Open Time Check",async ()=>{
-            const tx = await _router.CreateLevelsNFT(
-                "LevelsNFT_2",
+            const tx = await _router.CreateLevvelsNFT(
+                "LevvelsNFT_2",
                 "LFT2",
                 tokenURI,
                 maxsupply,
@@ -101,8 +101,8 @@ contract("Router_Test",(accounts) =>{
         });
 
         it("Close Time Check",async ()=>{
-            const tx = await _router.CreateLevelsNFT(
-                "LevelsNFT_3",
+            const tx = await _router.CreateLevvelsNFT(
+                "LevvelsNFT_3",
                 "LFT3",
                 tokenURI,
                 maxsupply,
@@ -126,8 +126,8 @@ contract("Router_Test",(accounts) =>{
 
     describe("[#3 Withdraw Test ]", () =>{
         it("NFT minting ",async ()=>{
-            const tx = await _router.CreateLevelsNFT(
-                "LevelsNFT_4",
+            const tx = await _router.CreateLevvelsNFT(
+                "LevvelsNFT_4",
                 "LFT4",
                 tokenURI,
                 maxsupply,

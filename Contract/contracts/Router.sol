@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "./LevelsNFTFactory.sol";
+import "./LevvelsNFTFactory.sol";
 
 contract Router is Ownable {
     event CreateNFT(uint APIndex, address contAddr); // api호출 번호, 계약 주소
@@ -11,8 +11,8 @@ contract Router is Ownable {
     address[] private createdNFT;
     mapping(uint => address) public createdNFTAPI;
 
-    //levels NFT 생성
-    function CreateLevelsNFT(
+    //levvels NFT 생성
+    function CreateLevvelsNFT(
         string memory _tokenName,
         string memory _tokenSymbol,
         string memory _baseUri,
@@ -22,7 +22,7 @@ contract Router is Ownable {
         uint32 _closeTime,
         address[] memory _withdrawWallet) external onlyOwner{
             require(mintedName[_tokenName] == 0,"Already Token Name"); // 0없음 1있음 
-        LevelsNFTFactory object = new LevelsNFTFactory(
+        LevvelsNFTFactory object = new LevvelsNFTFactory(
             _tokenName,
             _tokenSymbol,
             _baseUri,
@@ -43,25 +43,25 @@ contract Router is Ownable {
     // 구입 
     function _buyNFT(uint APIndex) public payable {
         address _APIndex = createdNFTAPI[APIndex];
-        LevelsNFTFactory(_APIndex).buyNFT{value:msg.value}(msg.sender);
+        LevvelsNFTFactory(_APIndex).buyNFT{value:msg.value}(msg.sender);
     }
      // 인출  
     function _withdraw(uint APIndex) public payable {
         address _APIndex = createdNFTAPI[APIndex];
-        LevelsNFTFactory(_APIndex).withdraw(msg.sender);
+        LevvelsNFTFactory(_APIndex).withdraw(msg.sender);
     }
 
     // 인출 조회 
     function _getWithdraw(uint APIndex) public view returns(uint) {
         address _APIndex = createdNFTAPI[APIndex];
-        uint result = LevelsNFTFactory(_APIndex).getWithdraw(msg.sender);
+        uint result = LevvelsNFTFactory(_APIndex).getWithdraw(msg.sender);
         return result;
     }
 
     // URI 조회
     function _tokenURI(uint APIndex,uint tokenId) public view returns (string memory) {
         address _APIndex = createdNFTAPI[APIndex];
-        string memory result = LevelsNFTFactory(_APIndex).tokenURI(tokenId);
+        string memory result = LevvelsNFTFactory(_APIndex).tokenURI(tokenId);
         return result;
     } 
     

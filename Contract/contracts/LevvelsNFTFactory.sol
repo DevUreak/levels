@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
-contract LevelsNFTFactory is Ownable, ERC721Enumerable {
+contract LevvelsNFTFactory is Ownable, ERC721Enumerable {
 
     struct TradingTime{
         uint32 openTime;
@@ -59,7 +59,7 @@ contract LevelsNFTFactory is Ownable, ERC721Enumerable {
     function buyNFT(address sender) external payable onlyOwner { // 라우터만 호출 가능
         require(sender != address(0),"Address cannot be address 0"); 
         require(msg.value >= mintPrice,"not enough Amount");
-        require(maxSupply > totalSupply(), "all levelsNFTs are minted");
+        require(maxSupply > totalSupply(), "all levvelsNFTs are minted");
         require(block.timestamp >= tradingTime.openTime,"not TradingTime_1");
         require(block.timestamp <= tradingTime.closeTime || tradingTime.closeTime == 0,"not TradingTime_2"); 
         require(lastBlockTime[sender]+antiBotInterval < block.timestamp,"Bot is not allowed");
