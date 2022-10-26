@@ -1,8 +1,8 @@
 {
     "image":"ipfs://QmPhgSMsc6kvJtAo3uMvHNL5xCLpyWEb8cnNMCMFeLTqwF",
-    "name":"Levels NFT",
-    "description":"Levels is the best marketplace",
+    "name":"Levvels NFT",
+    "description":"Levvels is the best marketplace",
     "attributes":[
-        {"trait_type":"type","value":"LevelsNFT"}
+        {"trait_type":"type","value":"LevvelsNFT"}
     ]
 }
