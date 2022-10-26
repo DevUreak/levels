@@ -31,7 +31,7 @@ truffle-config.json port, ip, network_id 확인 및 수정
 - Bot 방지 시스템 
 
 ## 기능 설명 
-- Router를 통해서만 필수 LevelsNFT 구매,수익 함수를 수행  
+- Router를 통해서만 필수 LevvelsNFT 구매,수익 함수를 수행  
 - Router 
     * CreateLevelsNFT
       + Levvels 브랜드의 NFT를 생성
