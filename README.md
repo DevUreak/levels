@@ -8,7 +8,7 @@
 
 ## 실행 방법 
 ```
-git clone git@github.com:DevUreak/levels.git
+git clone git@github.com:DevUreak/levvels.git
 cd Contract 
 npm install 
 truffle console --network development
@@ -34,7 +34,7 @@ truffle-config.json port, ip, network_id 확인 및 수정
 - Router를 통해서만 필수 LevelsNFT 구매,수익 함수를 수행  
 - Router 
     * CreateLevelsNFT
-      + Levels 브랜드의 NFT를 생성
+      + Levvels 브랜드의 NFT를 생성
       + 생성될때 이벤트를 통해 API key와 컨트랙트 주소를 반환
 
     * _buyNFT
