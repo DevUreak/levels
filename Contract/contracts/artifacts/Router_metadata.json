@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.7+commit.e28d00a7"
+		"version": "0.8.17+commit.8df45f5f"
 	},
 	"language": "Solidity",
 	"output": {
@@ -86,7 +86,7 @@
 						"type": "address[]"
 					}
 				],
-				"name": "CreateLevelsNFT",
+				"name": "CreateLevvelsNFT",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -244,7 +244,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
@@ -354,20 +354,20 @@
 				"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy"
 			]
 		},
-		"LevelsNFTFactory.sol": {
-			"keccak256": "0x0a237ce2523bd9bece8d45364b69350eaf4f6c32d8fcbd2779081d38ff1b00d7",
+		"LevvelsNFTFactory.sol": {
+			"keccak256": "0xe6df0c4534ce5bda5008fc0b71deb5fd84b745056eb2478ae2be2baf14eb1a7e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://fe843d2041839356136116c26ef06fe793b1bdef2faa633664e284fe755985ef",
-				"dweb:/ipfs/QmVY6gKmEw4WYDjSfUGob45RfNxoKpqMMHJZYWvTt76gG2"
+				"bzz-raw://6fdfd0bca62b5a6748b3a4a0e25bea267142706c49775a741c4c3fcd02ea1e38",
+				"dweb:/ipfs/QmPLg7oxz4f3y68QkH35MXhmipPEi77rpx2PfLsHSrDeFY"
 			]
 		},
 		"Router.sol": {
-			"keccak256": "0xd74d3d425556261290e27ff37d6f9493d0eae39852cbdfec7ce3f5a1c7e52cc2",
+			"keccak256": "0x00d7a9386486edc51ac88d0cb3a5db931abb5f725210de2dc1b4ca98235a9ff0",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a2a2aa46b3f7c402cb416bcc7a88e1a8422084d0b935fb1c87b866fe72b7a4aa",
-				"dweb:/ipfs/Qmc3KYCyPs9XFdRybuw7FWTdkcabFuqCk5Y2nZPyENGpp3"
+				"bzz-raw://756bad9ca375c672b50ce840cec7a51c1875ee2e547fac9c15e7f4f92bba879b",
+				"dweb:/ipfs/QmNWfL1wLUpibJvCAotkezqHPAbPkZbdcuXZi6u7EhJkjh"
 			]
 		}
 	},

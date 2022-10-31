@@ -26,6 +26,7 @@ contract LevvelsNFTFactory is Ownable, ERC721Enumerable {
     mapping (uint => address) public withdrawIndex; // 인출 금액 Index
     mapping (address => uint) public withdrawWallet; // 인출 금액
     mapping (address => uint) private lastBlockTime; // 마지막 호출 번호
+    mapping (address => bool) private _reentracncyLock; // guard
 
     constructor(
         string memory _tokenName,
@@ -49,6 +50,14 @@ contract LevvelsNFTFactory is Ownable, ERC721Enumerable {
             }
             totalWallet = index;
     }
+    //guard
+    modifier nonReentrancy(address sender){
+        require(!_reentracncyLock[sender]);
+        _reentracncyLock[sender] = true;
+        _;
+        _reentracncyLock[sender] = false;
+    }
+
     // 인터벌 간격 설정 
     function setAntiBotInterval(uint32 _interval) external{
         require(antiBotInterval == 0,"donot change");
@@ -56,7 +65,8 @@ contract LevvelsNFTFactory is Ownable, ERC721Enumerable {
     }
 
     // 구매
-    function buyNFT(address sender) external payable onlyOwner { // 라우터만 호출 가능
+    function buyNFT(address sender) external payable onlyOwner nonReentrancy(sender) { // 라우터만 호출 가능
+        //checks
         require(sender != address(0),"Address cannot be address 0"); 
         require(msg.value >= mintPrice,"not enough Amount");
         require(maxSupply > totalSupply(), "all levvelsNFTs are minted");
@@ -64,14 +74,14 @@ contract LevvelsNFTFactory is Ownable, ERC721Enumerable {
         require(block.timestamp <= tradingTime.closeTime || tradingTime.closeTime == 0,"not TradingTime_2"); 
         require(lastBlockTime[sender]+antiBotInterval < block.timestamp,"Bot is not allowed");
 
+        // effects
         // payback
+        bool paybackFlag = false;
+        uint payback = 0;
         if(msg.value > mintPrice){
-            uint payback = msg.value - mintPrice;
-            (bool success,) = sender.call{value: payback}("");
-            require(success, "payback_transfer_failed");
-            emit PaybackedEvent(sender,payback);
+            payback = msg.value - mintPrice;
+            paybackFlag = true;
         }
-
         // 수익금 분배 
         uint _payoff = mintPrice / totalWallet;
         for(uint i = 0 ; i < totalWallet ; i++ ){
@@ -81,20 +91,30 @@ contract LevvelsNFTFactory is Ownable, ERC721Enumerable {
 
         tokenId.increment();
         uint newItemId = tokenId.current();
-        _mint(sender, newItemId);
         lastBlockTime[sender] = block.timestamp;
+        
+        //interaction 
+        _mint(sender, newItemId);
+        if(paybackFlag == true){
+            (bool success,) = sender.call{value: payback}("");
+            require(success, "payback_transfer_failed");
+        }
+
+        emit PaybackedEvent(sender,payback);
         emit MintedEvent(newItemId, sender, tokenURI(newItemId));
     }
 
     // 인출 
     function withdraw(address sender) external onlyOwner {
+        //checks
         require(sender != address(0),"Address cannot be address 0");
         require(withdrawWallet[sender] > 0 ,"Lack of withdrawable amount");
-        
+        //effect
         uint amount = withdrawWallet[sender];
+        withdrawWallet[sender]= 0;
+        //interaction
         (bool success,) = sender.call{value: amount}("");
         require(success, "withdraw_transfer_failed");
-        delete withdrawWallet[sender];
         emit WithdrawEvent(sender,amount);
     }
 
