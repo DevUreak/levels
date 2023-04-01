@@ -49,7 +49,4 @@ truffle-config.json port, ip, network_id 확인 및 수정
     * _tokenURI
       + 해당 브랜드의 tokenURI를 조회
 
-
-
-
-
+커밋 테스트 ~ 
